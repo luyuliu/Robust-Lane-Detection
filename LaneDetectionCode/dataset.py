@@ -43,6 +43,7 @@ class RoadSequenceDatasetList(Dataset):
     def __init__(self, file_path, transforms):
 
         self.img_list = glob.glob(file_path + "/*.jpg")
+        print(len(self.img_list))
         self.dataset_size = len(self.img_list)
         self.transforms = transforms
     def __len__(self):
