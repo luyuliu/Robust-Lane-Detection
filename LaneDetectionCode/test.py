@@ -17,7 +17,7 @@ def output_result(model, test_loader, device):
         for sample_batched in test_loader:
             k+=1
             print(k)
-            data, target = sample_batched['data'].to(device), sample_batched['label'].type(torch.LongTensor).to(device)
+            data = sample_batched['data'].to(device)
             output,feature = model(data)
             feature_dic.append(feature)
             pred = output.max(1, keepdim=True)[1]
@@ -151,4 +151,4 @@ if __name__ == '__main__':
     # output the result pictures
     output_result(model, test_loader, device)
     # calculate the values of accuracy, precision, recall, f1_measure
-    evaluate_model(model, test_loader, device, criterion)
+    # evaluate_model(model, test_loader, device, criterion)

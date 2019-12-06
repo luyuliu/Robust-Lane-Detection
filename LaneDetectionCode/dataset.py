@@ -54,9 +54,7 @@ class RoadSequenceDatasetList(Dataset):
         for i in range(5):
             data.append(torch.unsqueeze(self.transforms(Image.open(img_path_list[i])), dim=0))
         data = torch.cat(data, 0)
-        label = Image.open(img_path_list[5])
-        label = torch.squeeze(self.transforms(label))
-        sample = {'data': data, 'label': label}
+        sample = {'data': data}
         return sample
 
 
