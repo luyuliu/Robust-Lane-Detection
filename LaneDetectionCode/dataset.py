@@ -5,6 +5,7 @@ import config
 import torchvision.transforms as transforms
 import numpy as np
 from sklearn import preprocessing
+import glob
 
 def readTxt(file_path):
     img_list = []
@@ -22,7 +23,7 @@ class RoadSequenceDataset(Dataset):
 
     def __init__(self, file_path, transforms):
 
-        self.img_list = readTxt(file_path)
+        self.img_list = glob.glob(file_path + "/*.jpg")
         self.dataset_size = len(self.img_list)
         self.transforms = transforms
     def __len__(self):

@@ -1,0 +1,7 @@
+qsub -I -l nodes=1:ppn=1:gpus=1 -l walltime=2:00:00 -A PAS1588
+
+source /users/PAS1588/liuluyu0378/example/miniconda/bin/activate
+export PYTHONNOUSERSITE=true
+conda activate robust_lane
+module load cuda/8.0.61
+cd /users/PAS1588/liuluyu0378/ConvolutionalBikelane/Robust-Lane-Detection/LaneDetectionCode
