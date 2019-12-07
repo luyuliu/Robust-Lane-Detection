@@ -36,7 +36,7 @@ class UNet_ConvLSTM(nn.Module):
         self.up3 = up(256, 64)
         self.up4 = up(128, 64)
         self.outc = outconv(64, n_classes)
-        self.convlstm = ConvLSTM(input_size=(8,16),
+        self.convlstm = ConvLSTM(input_size=(48,48),
                                  input_dim=512,
                                  hidden_dim=[512, 512],
                                  kernel_size=(3,3),

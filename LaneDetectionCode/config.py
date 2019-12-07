@@ -16,7 +16,7 @@ train_path = "./data/train_index.txt"
 val_path = "./data/val_index.txt"
 test_path = "/users/PAS1588/liuluyu0378/ConvolutionalBikelane/data/street_images_forward"
 save_path = "./save/result/"
-pretrained_path='./pretrained/unetlstm.pth'
+pretrained_path='/users/PAS1588/liuluyu0378/ConvolutionalBikelane/data/unetlstm.pth'
 
 # weight
 class_weight = [0.02, 1.02]
@@ -25,7 +25,7 @@ def args_setting():
     # Training settings
     parser = argparse.ArgumentParser(description='PyTorch UNet-ConvLSTM')
     parser.add_argument('--model',type=str, default='UNet-ConvLSTM',help='( UNet-ConvLSTM | SegNet-ConvLSTM | UNet | SegNet | ')
-    parser.add_argument('--batch-size', type=int, default=15, metavar='N',
+    parser.add_argument('--batch-size', type=int, default=10, metavar='N',
                         help='input batch size for training (default: 10)')
     parser.add_argument('--test-batch-size', type=int, default=100, metavar='N',
                         help='input batch size for testing (default: 100)')

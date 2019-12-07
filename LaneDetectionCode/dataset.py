@@ -52,9 +52,7 @@ class RoadSequenceDatasetList(Dataset):
     def __getitem__(self, idx):
         img_path_list = self.img_list[idx]
         data = []
-        for i in range(5):
-            print(img_path_list)
-            data.append(torch.unsqueeze(self.transforms(Image.open(img_path_list[i])), dim=0))
+        data.append(torch.unsqueeze(self.transforms(Image.open(img_path_list)), dim=0))
         data = torch.cat(data, 0)
         sample = {'data': data}
         return sample
