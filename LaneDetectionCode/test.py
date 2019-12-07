@@ -22,30 +22,31 @@ def output_result(model, test_loader, device):
             output,feature = model(data)
             
             print("output", output.size())
+            output = output.numpy()*255
+            cv2.imwrite(config.save_path + str(k) +"_data.jpg", output)
 
-            feature_dic.append(feature)
-            pred = output.max(1, keepdim=True)[1]
-            img = torch.squeeze(pred).cpu().unsqueeze(2).expand(1, -1,-1,3).numpy()*255
-            img = Image.fromarray(img.astype(np.uint8))
+            # feature_dic.append(feature)
+            # pred = output.max(1, keepdim=True)[1]
+            # img = torch.squeeze(pred).cpu().unsqueeze(2).expand(1, -1,-1,3).numpy()*255
+            # img = Image.fromarray(img.astype(np.uint8))
 
-            data = torch.squeeze(data).cpu().numpy()
-            if args.model == 'SegNet-ConvLSTM' or 'UNet-ConvLSTM':
-                 data = np.transpose(data[-1], [1, 2, 0]) * 255
-            else:
-                 data = np.transpose(data, [1, 2, 0]) * 255
-            data = Image.fromarray(data.astype(np.uint8))
-            rows = img.size[0]
-            cols = img.size[1]
-            for i in range(0, rows):
-                for j in range(0, cols):
-                    img2 = (img.getpixel((i, j)))
-                    if (img2[0] > 200 or img2[1] > 200 or img2[2] > 200):
-                        data.putpixel((i, j), (234, 53, 57, 255))
-            data = data.convert("RGB")
+            # data = torch.squeeze(data).cpu().numpy()
+            # if args.model == 'SegNet-ConvLSTM' or 'UNet-ConvLSTM':
+            #      data = np.transpose(data[-1], [1, 2, 0]) * 255
+            # else:
+            #      data = np.transpose(data, [1, 2, 0]) * 255
+            # data = Image.fromarray(data.astype(np.uint8))
+            # rows = img.size[0]
+            # cols = img.size[1]
+            # for i in range(0, rows):
+            #     for j in range(0, cols):
+            #         img2 = (img.getpixel((i, j)))
+            #         if (img2[0] > 200 or img2[1] > 200 or img2[2] > 200):
+            #             data.putpixel((i, j), (234, 53, 57, 255))
+            # data = data.convert("RGB")
             
-            #cv2.imwrite(config.save_path + str(k) +"_data.jpg", data)
-            data.save(config.save_path + "%s_data.jpg" % k)#red line on the original image
-            # img.save(config.save_path + "%s_pred.jpg" % k)#prediction result
+            # data.save(config.save_path + "%s_data.jpg" % k)#red line on the original image
+            # # img.save(config.save_path + "%s_pred.jpg" % k)#prediction result
 
 def evaluate_model(model, test_loader, device, criterion):
     model.eval()
